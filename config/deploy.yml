@@ -10,9 +10,9 @@ servers:
     hosts:
       - bizteacher.top
     labels:
-      traefik.http.routers.domain.rule: Host(`bizteacher.top`)
-      traefik.http.routers.domain.entrypoints: websecure
-      traefik.http.routers.domain.tls.certresolver: letsencrypt
+      traefik.http.routers.bizteacher-web.rule: Host(`bizteacher.top`)
+      traefik.http.routers.bizteacher-web.entrypoints: websecure
+      traefik.http.routers.bizteacher-web.tls.certresolver: letsencrypt
 
 
 # Credentials for your image host.
