@@ -102,6 +102,11 @@ healthcheck:
 #   wait: 2
 traefik:
   # host_port: 8080
+  labels:
+    traefik.http.routers.registry-reg2.rule: Host(`repos.bizteacher.top`)
+    traefik.http.routers.registry-reg2.entrypoints: websecure
+    traefik.http.routers.registry-reg2.tls: true
+    traefik.http.routers.registry-reg2.tls.certresolver: letsencrypt
   options:
     publish:
       - "443:443"
@@ -115,6 +120,7 @@ traefik:
     entryPoints.web.http.redirections.entrypoint.permanent: true
     entrypoints.websecure.http.tls: true
     entrypoints.websecure.http.tls.domains[0].main: "bizteacher.top"
+    entrypoints.websecure.http.tls.domains[0].sans: "*.bizteacher.top"
     certificatesResolvers.letsencrypt.acme.email: "29148452@qq.com"
     certificatesResolvers.letsencrypt.acme.storage: "/letsencrypt/acme.json"
     certificatesResolvers.letsencrypt.acme.httpchallenge: true
