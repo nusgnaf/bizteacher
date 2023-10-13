@@ -48,7 +48,7 @@ env:
 builder:
   remote:
     arch: amd64
-    host: ssh://root@192.168.10.110
+    host: ssh://root@192.168.10.109
   # multiarch: false
 #   args:
 #     RUBY_VERSION: 3.2.0
