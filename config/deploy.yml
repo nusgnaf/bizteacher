@@ -104,9 +104,10 @@ traefik:
   # host_port: 8080
   labels:
     traefik.http.routers.registry-reg2.rule: Host(`repos.bizteacher.top`)
-    traefik.http.routers.registry-reg2.entrypoints: websecure
     traefik.http.routers.registry-reg2.tls: true
     traefik.http.routers.registry-reg2.tls.certresolver: letsencrypt
+    traefik.http.routers.registry-reg2.tls.domains[0].main: "repos.bizteacher.top"
+    traefik.http.routers.registry-reg2.tls.domains[0].sans: "*.bizteacher.top"
   options:
     publish:
       - "443:443"
