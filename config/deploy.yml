@@ -8,7 +8,7 @@ image: biz/portal
 servers:
   web:
     directories:
-      - storage: <%= Rails.root.join("storage") %>
+      - storage:/rails/storage
     hosts:
       - bizteacher.top
     labels:
