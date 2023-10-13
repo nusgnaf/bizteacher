@@ -7,6 +7,8 @@ image: biz/portal
 # Deploy to these servers.
 servers:
   web:
+    directories:
+      - storage: <%= Rails.root.join("storage") %>
     hosts:
       - bizteacher.top
     labels:

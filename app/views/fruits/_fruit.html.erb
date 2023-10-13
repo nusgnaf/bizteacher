@@ -1,0 +1,32 @@
+<div id="<%= dom_id fruit %>">
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Name:</strong>
+    <%= fruit.name %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Family:</strong>
+    <%= fruit.family %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Order:</strong>
+    <%= fruit.order %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Genus:</strong>
+    <%= fruit.genus %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Nutritions:</strong>
+    <%= fruit.nutritions %>
+  </p>
+
+  <% if action_name != "show" %>
+    <%= link_to "Show this fruit", fruit, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <%= link_to "Edit this fruit", edit_fruit_path(fruit), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
+    <hr class="mt-6">
+  <% end %>
+</div>

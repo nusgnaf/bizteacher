@@ -7,3 +7,7 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+fruits = JSON.load_file('db/fruits.json')
+fruits.each do |t|
+    Fruit.create(t)
+end
