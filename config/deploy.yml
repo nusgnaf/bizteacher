@@ -3,6 +3,8 @@ service: bizteacher
 
 # Name of the container image.
 image: biz/portal
+# ssh:
+#   user: lighthouse ### yeah
 
 # Deploy to these servers.
 servers:
@@ -41,14 +43,12 @@ env:
 #     DB_HOST: 192.168.0.2
 
 # Use a different ssh user than root
-ssh:
-  user: lighthouse ### yeah
 
 # Configure builder setup.
 builder:
   remote:
     arch: amd64
-    host: ssh://rocky@192.168.10.110
+    host: ssh://root@192.168.10.110
   # multiarch: false
 #   args:
 #     RUBY_VERSION: 3.2.0
