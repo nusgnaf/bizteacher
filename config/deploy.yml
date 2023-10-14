@@ -18,7 +18,7 @@ servers:
       traefik.http.routers.bizteacher-web.entrypoints: websecure
       traefik.http.routers.bizteacher-web.tls.certresolver: letsencrypt
   web2:
-  traefik: true
+    traefik: true
     hosts:
       - 150.158.27.74
     labels:
