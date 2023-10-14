@@ -12,11 +12,19 @@ servers:
     directories:
       - storage:/rails/storage
     hosts:
-      - bizteacher.top
+      - 150.158.27.74
     labels:
       traefik.http.routers.bizteacher-web.rule: Host(`bizteacher.top`)
       traefik.http.routers.bizteacher-web.entrypoints: websecure
       traefik.http.routers.bizteacher-web.tls.certresolver: letsencrypt
+  web2:
+  traefik: true
+    hosts:
+      - 150.158.27.74
+    labels:
+      traefik.http.routers.registry-badboy.rule: Host(`repos.bizteacher.top`)
+      traefik.http.routers.registry-badboy.entrypoints: websecure
+      traefik.http.routers.registry-badboy.tls.certresolver: letsencrypt
 
 
 # Credentials for your image host.
@@ -37,6 +45,8 @@ env:
     - RAILS_MASTER_KEY
     - KAMAL_REGISTRY_PASSWORD
     - REDIS_URL
+    - TENCENTCLOUD_SECRET_ID
+    - TENCENTCLOUD_SECRET_KEY
 
 
 #   clear:
@@ -100,14 +110,26 @@ healthcheck:
 # boot:
 #   limit: 10 # Can also specify as a percentage of total hosts, such as "25%"
 #   wait: 2
+# traefik:
+#   # host_port: 8080
+#   labels:
+#     traefik.http.routers.registry-reg2.rule: Host(`repos.bizteacher.top`)
+#     traefik.http.routers.registry-reg2.tls: true
+#     traefik.http.routers.registry-reg2.tls.certresolver: letsencrypt
+#     traefik.http.routers.registry-reg2.tls.domains[0].main: "repos.bizteacher.top"
+#     traefik.http.routers.registry-reg2.tls.domains[0].sans: "*.bizteacher.top"
 traefik:
-  # host_port: 8080
+  env:
+    secret:
+      - TENCENTCLOUD_SECRET_ID
+      - TENCENTCLOUD_SECRET_KEY
+
   labels:
-    traefik.http.routers.registry-reg2.rule: Host(`repos.bizteacher.top`)
-    traefik.http.routers.registry-reg2.tls: true
-    traefik.http.routers.registry-reg2.tls.certresolver: letsencrypt
-    traefik.http.routers.registry-reg2.tls.domains[0].main: "repos.bizteacher.top"
-    traefik.http.routers.registry-reg2.tls.domains[0].sans: "*.bizteacher.top"
+    traefik.enable: true
+    traefik.http.routers.dashboard.rule: Host(`api.bizteacher.top`)
+    traefik.http.routers.dashboard.service: api@internal
+    traefik.http.routers.dashboard.middlewares: auth
+    traefik.http.middlewares.auth.basicauth.users: fang:$2y$05$H2o72tMaO.TwY1wNQUV1K.fhjRgLHRDWohFvUZOJHBEtUXNKrqUKi # test:password
   options:
     publish:
       - "443:443"
@@ -116,13 +138,14 @@ traefik:
   args:
     entryPoints.web.address: ":80"
     entryPoints.websecure.address: ":443"
-    entryPoints.web.http.redirections.entryPoint.to: websecure
+    # entryPoints.web.http.redirections.entryPoint.to: websecure
     entryPoints.web.http.redirections.entryPoint.scheme: https
-    entryPoints.web.http.redirections.entrypoint.permanent: true
+    # entryPoints.web.http.redirections.entrypoint.permanent: true
     entrypoints.websecure.http.tls: true
     entrypoints.websecure.http.tls.domains[0].main: "bizteacher.top"
     entrypoints.websecure.http.tls.domains[0].sans: "*.bizteacher.top"
     certificatesResolvers.letsencrypt.acme.email: "29148452@qq.com"
     certificatesResolvers.letsencrypt.acme.storage: "/letsencrypt/acme.json"
-    certificatesResolvers.letsencrypt.acme.httpchallenge: true
-    certificatesResolvers.letsencrypt.acme.httpchallenge.entrypoint: web
+    certificatesresolvers.letsencrypt.acme.dnschallenge.provider: tencentcloud
+    # certificatesResolvers.letsencrypt.acme.httpchallenge: true
+    # certificatesResolvers.letsencrypt.acme.httpchallenge.entrypoint: web
