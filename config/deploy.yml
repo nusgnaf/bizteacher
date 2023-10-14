@@ -17,11 +17,6 @@ servers:
       traefik.http.routers.bizteacher-web.rule: Host(`bizteacher.top`)
       traefik.http.routers.bizteacher-web.entrypoints: websecure
       traefik.http.routers.bizteacher-web.tls.certresolver: letsencrypt
-  web2:
-    traefik: true
-    hosts:
-      - 150.158.27.74
-    labels:
       traefik.http.routers.registry-badboy.rule: Host(`repos.bizteacher.top`)
       traefik.http.routers.registry-badboy.entrypoints: websecure
       traefik.http.routers.registry-badboy.tls.certresolver: letsencrypt
@@ -144,6 +139,10 @@ traefik:
     entrypoints.websecure.http.tls: true
     entrypoints.websecure.http.tls.domains[0].main: "bizteacher.top"
     entrypoints.websecure.http.tls.domains[0].sans: "*.bizteacher.top"
+    entrypoints.websecure.http.tls.domains[1].main: "repos.bizteacher.top"
+    entrypoints.websecure.http.tls.domains[1].sans: "*.bizteacher.top"
+    entrypoints.websecure.http.tls.domains[2].main: "api.bizteacher.top"
+    entrypoints.websecure.http.tls.domains[2].sans: "*.bizteacher.top"
     certificatesResolvers.letsencrypt.acme.email: "29148452@qq.com"
     certificatesResolvers.letsencrypt.acme.storage: "/letsencrypt/acme.json"
     certificatesresolvers.letsencrypt.acme.dnschallenge.provider: tencentcloud
