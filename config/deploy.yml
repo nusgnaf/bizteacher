@@ -9,8 +9,9 @@ image: biz/portal
 # Deploy to these servers.
 servers:
   web:
-    network:
-      - asgard
+    options:
+      network:
+        - asgard
     directories:
       - storage:/rails/storage
     hosts:
@@ -154,6 +155,3 @@ traefik:
     certificatesresolvers.letsencrypt.acme.dnschallenge.provider: tencentcloud
     # certificatesResolvers.letsencrypt.acme.httpchallenge: true
     # certificatesResolvers.letsencrypt.acme.httpchallenge.entrypoint: web
-networks:
-  traefik_proxy:
-    external: true
