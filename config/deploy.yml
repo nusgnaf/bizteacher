@@ -9,6 +9,8 @@ image: biz/portal
 # Deploy to these servers.
 servers:
   web:
+    network:
+      - asgard
     directories:
       - storage:/rails/storage
     hosts:
@@ -17,9 +19,9 @@ servers:
       traefik.http.routers.bizteacher-web.rule: Host(`bizteacher.top`)
       traefik.http.routers.bizteacher-web.entrypoints: websecure
       traefik.http.routers.bizteacher-web.tls.certresolver: letsencrypt
-      traefik.http.routers.registry-badboy.rule: Host(`repos.bizteacher.top`)
-      traefik.http.routers.registry-badboy.entrypoints: websecure
-      traefik.http.routers.registry-badboy.tls.certresolver: letsencrypt
+      # traefik.http.routers.registry-badboy.rule: Host(`repos.bizteacher.top`)
+      # traefik.http.routers.registry-badboy.entrypoints: websecure
+      # traefik.http.routers.registry-badboy.tls.certresolver: letsencrypt
 
 
 # Credentials for your image host.
@@ -49,10 +51,10 @@ env:
 
 # Configure builder setup.
 builder:
-  remote:
-    arch: amd64
-    host: ssh://root@192.168.10.109
-  # multiarch: false
+#   remote:
+#     arch: amd64
+#     host: ssh://root@192.168.10.109
+  multiarch: false
 #   args:
 #     RUBY_VERSION: 3.2.0
 #   secrets:
@@ -124,12 +126,12 @@ traefik:
     traefik.http.routers.dashboard.middlewares: auth
     traefik.http.middlewares.auth.basicauth.users: fang:$2y$05$H2o72tMaO.TwY1wNQUV1K.fhjRgLHRDWohFvUZOJHBEtUXNKrqUKi # test:password
   options:
+    network:
+      - asgard
     publish:
       - "443:443"
     volume:
       - "/letsencrypt/acme.json:/letsencrypt/acme.json"
-  networks:
-    - traefik_proxy
   args:
     api: true
     api.dashboard: true
