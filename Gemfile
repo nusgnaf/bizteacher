@@ -70,3 +70,7 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
 end
+
+gem "litestack", "~> 0.4.2"
+
+# gem "activerecord-enhancedsqlite3-adapter", "~> 0.4.0"
