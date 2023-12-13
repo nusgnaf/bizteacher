@@ -11,13 +11,12 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body>
+  <body class="flex flex-col min-h-screen">
     <main class="container mx-auto mt-28 px-5 flex">
       <%= yield %>
     </main>
-    <div class="footer">
-      <img src="/beian-police.png">
-      <a href="https://beian.miit.gov.cn/" target="_blank">鲁ICP备2021044837号-1</a>
-    </div>
+    <footer class="footer mt-auto bg-gray-200 p-4 flex items-center justify-center">
+      <img src="/beian-police.png"><a href="https://beian.miit.gov.cn/" target="_blank">鲁ICP备2021044837号-1</a>
+    </footer>
   </body>
 </html>
