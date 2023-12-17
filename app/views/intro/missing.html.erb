@@ -1,0 +1,18 @@
+<h1>没有交作业的同学:<%= @missing_deadline_users.size %>人</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>学生</th>
+      <th>学号</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @missing_deadline_users.each do |student| %>
+      <tr>
+        <td><%= student.name %></td>
+        <td><%= student.stuid %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

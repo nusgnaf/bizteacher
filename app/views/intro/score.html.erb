@@ -1,0 +1,20 @@
+<h1>成绩单:</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>学生</th>
+      <th>学号</th>
+      <th>分数</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @students.each do |student| %>
+      <tr>
+        <td><%= student.name %></td>
+        <td><%= student.stuid %></td>
+        <td><%= student.score %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

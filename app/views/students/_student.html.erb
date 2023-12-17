@@ -1,0 +1,26 @@
+<div id="<%= dom_id student %>">
+  <p>
+    <strong>Name:</strong>
+    <%= student.name %>
+  </p>
+
+  <p>
+    <strong>Stuid:</strong>
+    <%= student.stuid %>
+  </p>
+
+  <p>
+    <strong>Submitted?:</strong>
+    <%= student.submitted? %>
+  </p>
+
+  <p>
+    <strong>Homework:</strong>
+    <%= link_to student.homework.filename, student.homework if student.homework.attached? %>
+  </p>
+  <p>
+    <strong>Score:</strong>
+    <%= student.score %>
+  </p>
+
+</div>

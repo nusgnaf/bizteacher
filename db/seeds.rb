@@ -11,3 +11,9 @@ fruits = JSON.load_file('db/fruits.json')
 fruits.each do |t|
     Fruit.create(t)
 end
+
+require 'csv'
+File.open('db/data.csv') do |fh|
+  csv = CSV.new(fh, headers: ['name', 'stuid'], converters: [:integer])
+  Student.create(csv.map{ |n| n.to_h})
+end

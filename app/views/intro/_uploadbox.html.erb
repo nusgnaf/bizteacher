@@ -1,0 +1,7 @@
+<h2><%= session[:name] %> 同学，请在12.18日16:00之前上传作业</h2>
+<div data-controller="upload">
+<%= form_with url: 'upload' do |f| %>
+  <%= f.file_field :homework, id: 'file-input', 'data-upload-target': 'fileInput', 'data-action': 'change->upload#activateUploadButton' %>
+  <%= f.submit '提交作业', disabled: true, id: 'upload-button', 'data-upload-target': 'uploadButton' %>
+<% end %>
+</div>

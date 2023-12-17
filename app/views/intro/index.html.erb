@@ -1,0 +1,14 @@
+<%# <h1>谢谢大家，久等了</h1> %>
+<ol><h2>上传作业两步走</h2></ol>
+  <li>输入学号</li>
+  <li>选择作业压缩包，上传</li>
+</ol>
+<% unless session[:valid?] %>
+  <%= render 'check' %>
+<% else %>
+  <% if session[:submitted?] %>
+    <%= render 'waiting' %>
+  <% else %>
+    <%= render 'uploadbox' %>
+  <% end %>
+<% end %>

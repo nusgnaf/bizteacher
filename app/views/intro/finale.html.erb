@@ -1,0 +1,12 @@
+<h1 class="text-5xl font-bold mb-8">输入学号，查询分数</h1>
+<% unless session[:valid?] %>
+<%= form_with url: 'check2' do |f| %>
+  <%= f.label :stuid, "请输入学号" %>
+  <br />
+  <%= f.number_field :stuid %>
+  <br />
+  <%= f.submit "检查学号" %>
+<% end %>
+<% else %>
+<p><%= session[:name] %>同学，你的期末成绩是<b><%= session[:score] %></b></p>
+<% end %>
