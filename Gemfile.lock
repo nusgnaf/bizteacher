@@ -58,9 +58,6 @@ GEM
       activemodel (= 7.1.1)
       activesupport (= 7.1.1)
       timeout (>= 0.4.0)
-    activerecord-enhancedsqlite3-adapter (0.4.0)
-      activerecord (>= 7.1)
-      sqlite3 (~> 1.6)
     activestorage (7.1.1)
       actionpack (= 7.1.1)
       activejob (= 7.1.1)
@@ -344,7 +341,6 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
-  activerecord-enhancedsqlite3-adapter (~> 0.4.0)
   bootsnap
   capybara
   debug
